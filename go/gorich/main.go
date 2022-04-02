@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 type Income struct {
 	Id          string
 	Name        string
@@ -48,16 +50,15 @@ func main() {
 			var inc = Income{}
 			inc.Value = float64(i)
 			mov.Movement[i] = inc
-			println(float64(i))
 		} else {
 			exp := Expense{}
-			exp.SetValue(float64(i))
+			exp.Value = float64(i)
 			mov.Movement[i] = exp
 		}
 	}
 
 	for _, v := range mov.Movement {
-		println(v.GetValue())
+		fmt.Println(v.GetValue())
 	}
 
 }

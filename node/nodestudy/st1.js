@@ -9,14 +9,14 @@ const options = {
 
 }
 
-callback = function(response){
+callback = function(response) {
   var str = ''
 
-  response.on('data', function(chunk){
+  response.on('data', function(chunk) {
     str += chunk
   })
 
-  response.on('end', function(){
+  response.on('end', function() {
     console.log(str)
   })
 }

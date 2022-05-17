@@ -7,16 +7,16 @@ defmodule Second do
     |> Enum.filter(fn el -> Regex.match?(~r/firefox/, el) end)
     |> Enum.map(fn el ->
       String.split(el, " ", trim: true)
-      |> process_list()
-      |> IO.puts()
+      # |> process_list()
+      |> IO.inspect()
     end)
   end
 
   defp process_list(list) when is_list(list) and list > 3 do
-    # [head | tail] = list
-    # IO.puts(head)
-    # process_list(tail)
-    %{user: Enum.fetch!(list, 0), pid: Enum.fetch!(list, 1)}
+    [head | tail] = list
+    IO.puts(head)
+    process_list(tail)
+    # %{user: Enum.fetch!(list, 0), pid: Enum.fetch!(list, 1)}
   end
 end
 

@@ -4,11 +4,23 @@
 package remember;
 
 public class App {
-  public String getGreeting(String greet) {
-    return "Hello " + greet;
-  }
 
   public static void main(String[] args) {
-    System.out.println(new App().getGreeting("You"));
+
+    User u = new User();
+    SimpleHasher sp = new SimpleHasher();
+    UUIDGenerator uuid = new UUIDGenerator();
+
+    u.setHasher(sp);
+    u.setGenerator(uuid);
+
+    u.setUsername("fernando");
+    u.setPassword("123");
+    u.setEmail("fernando@mail.com");
+    u.setId("");
+
+    System.out.println(u.getPassword());
+    System.out.println(u.getId());
+
   }
 }

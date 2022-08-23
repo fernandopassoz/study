@@ -6,6 +6,7 @@ package extenso;
 public class App {
 
   public static void main(String[] args) {
-    NumberToText.text(3);
+
+    NumberToText.text(34567);
   }
 }

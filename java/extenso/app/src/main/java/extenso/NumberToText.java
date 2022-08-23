@@ -3,24 +3,41 @@ package extenso;
 import java.util.HashMap;
 
 public class NumberToText {
-  private static HashMap hm;
-  private static int number;
+  private HashMap hm;
+  private int number;
 
-  private static void numberAnalizer() {
-    String num = String.valueOf(number);
+  private void setNumber(int number) {
+    this.number = number;
+  }
+
+  private void numberAnalyzer() {
+    String num = String.valueOf(this.number);
     int strSize = num.length();
-    String[] decomposed = num.split("");
-    System.out.println(decomposed[0]);
+    char[] decomposed = num.toCharArray();
+    StringBuilder analyzed = new StringBuilder();
+    for (int i = 0; i < decomposed.length; i++) {
+      int digits = decomposed.length - i;
+      StringBuilder hashText = new StringBuilder();
+      hashText.append(Character.toString(decomposed[i]));
+      for (int j = 0; j < digits - 1; j++) {
+        hashText.append("_");
+      }
+      System.out.println(hashText.toString());
+      analyzed.append(this.hm.get(hashText.toString()));
+    }
+    System.out.println(analyzed.toString());
   }
 
   public static final String text(int number) {
-    createMapNumbers();
-    numberAnalizer();
+    NumberToText ntt = new NumberToText();
+    ntt.setNumber(number);
+    ntt.createMapNumbers();
+    ntt.numberAnalyzer();
     return "";
   }
 
-  private static void createMapNumbers() {
-    hm = new HashMap<String, String>();
+  private void createMapNumbers() {
+    this.hm = new HashMap<String, String>();
     hm.put("1", "um");
     hm.put("2", "dois");
     hm.put("3", "tres");
@@ -42,12 +59,12 @@ public class NumberToText {
     hm.put("19", "dezenove");
     hm.put("2_", "vinte");
     hm.put("3_", "trinta");
-    hm.put("4_", "");
-    hm.put("5_", "um");
-    hm.put("6_", "um");
-    hm.put("7_", "um");
-    hm.put("8_", "um");
-    hm.put("9_", "um");
+    hm.put("4_", "quarenta");
+    hm.put("5_", "cinquenta");
+    hm.put("6_", "sessenta");
+    hm.put("7_", "setenta");
+    hm.put("8_", "oitenta");
+    hm.put("9_", "noventa");
     hm.put("100", "cem");
     hm.put("1__", "cento");
     hm.put("2__", "duzentos");
@@ -61,7 +78,7 @@ public class NumberToText {
     hm.put("___", "mil");
     hm.put("1______", "milhão");
     hm.put("______", "milhões");
-    hm.put("1_________", "Bilhão");
+    hm.put("1_________", "bilhão");
     hm.put("_________", "bilhões");
     hm.put("1____________", "trilhão");
     hm.put("____________", "trilhões");
